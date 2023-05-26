@@ -20,12 +20,15 @@ export function headers({
 }
 
 export const loader = async () => {
-  const ditto = fetch("https://pokeapi.co/api/v2/pokemon/ditto").then(
-    async (data) => data.json()
-  );
-  const charmander = fetch("https://pokeapi.co/api/v2/pokemon/charmander").then(
-    (data) => data.json()
-  );
+  const [ditto, charmander] = await Promise.all([
+    fetch("https://pokeapi.co/api/v2/pokemon/ditto").then((data) =>
+      data.json()
+    ),
+    fetch("https://pokeapi.co/api/v2/pokemon/charmander").then((data) =>
+      data.json()
+    ),
+  ]);
+
   return json({ ditto: await ditto, charmander: await charmander });
 };
 
