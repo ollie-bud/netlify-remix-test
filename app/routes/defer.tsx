@@ -20,13 +20,14 @@ export function headers({
 }
 
 export const loader = async () => {
+  console.log("/defer loader");
   const ditto = fetch("https://pokeapi.co/api/v2/pokemon/ditto").then(
     async (data) => data.json()
   );
   const charmander = fetch("https://pokeapi.co/api/v2/pokemon/charmander").then(
     (data) => data.json()
   );
-  return defer({ ditto: ditto, charmander: charmander });
+  return defer({ ditto, charmander });
 };
 
 export default function Index() {

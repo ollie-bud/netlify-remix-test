@@ -20,6 +20,8 @@ export function headers({
 }
 
 export const loader = async () => {
+  console.log("/ loader");
+
   const [ditto, charmander] = await Promise.all([
     fetch("https://pokeapi.co/api/v2/pokemon/ditto").then((data) =>
       data.json()
