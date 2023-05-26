@@ -3,9 +3,9 @@ import { defer } from "@remix-run/node";
 import { Await, useLoaderData, Link } from "@remix-run/react";
 import { Suspense } from "react";
 
-export const headers: HeadersFunction = ({ loaderHeaders }) => ({
-  "Cache-Control": "public, max-age=60, s-maxage=60",
-});
+// export const headers: HeadersFunction = ({ loaderHeaders }) => ({
+//   "Cache-Control": "public, max-age=60, s-maxage=60",
+// });
 
 export const loader = async () => {
   const ditto = fetch("https://example-url.com/api/slow").then((data) =>
@@ -14,7 +14,6 @@ export const loader = async () => {
   const charmander = fetch("https://pokeapi.co/api/v2/pokemon/charmander").then(
     (data) => data.json()
   );
-
   return defer({ ditto: ditto, charmander: await charmander });
 };
 

@@ -4,9 +4,7 @@ const baseConfig =
     ? config
     : { ignoredRouteFiles: ["**/.*"], future: config.future };
 
-/**
- * @type {import('@remix-run/dev').AppConfig}
- */
+/** @type {import('@remix-run/dev').AppConfig} */
 module.exports = {
   ...baseConfig,
   // This works out of the box with the Netlify adapter, but you can
