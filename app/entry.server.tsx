@@ -9,10 +9,9 @@ import { rest } from "msw";
 import { DITTO } from "./ditto";
 
 export const handlers = [
-  rest.get("https://example-url.com/api/slow", (_, res, ctx) => {
-    console.log("hit slow request");
-    return res(ctx.status(200), ctx.delay(1000), ctx.json(DITTO));
-  }),
+  rest.get("https://example-url.com/api/slow", (_, res, ctx) =>
+    res(ctx.status(200), ctx.delay(1000), ctx.json(DITTO))
+  ),
 ];
 
 export const server = setupServer(...handlers);
