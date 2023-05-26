@@ -1,5 +1,5 @@
 import type { HeadersFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
+import { defer } from "@remix-run/node";
 import { Await, useLoaderData, Link } from "@remix-run/react";
 import { Suspense } from "react";
 
@@ -14,7 +14,7 @@ export const loader = async () => {
   const charmander = fetch("https://pokeapi.co/api/v2/pokemon/charmander").then(
     (data) => data.json()
   );
-  return json({ ditto: ditto, charmander: await charmander });
+  return defer({ ditto: ditto, charmander: await charmander });
 };
 
 export default function Index() {
@@ -25,7 +25,7 @@ export default function Index() {
 
   return (
     <main style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <h1>No Defer (with cache)</h1>
+      <h1>Defer (with cache)</h1>
 
       <Link to={"/1"}>Another page</Link>
       <Link to={"/defer"}>Defer</Link>

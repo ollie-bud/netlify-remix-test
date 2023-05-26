@@ -7,6 +7,7 @@ export default function Index() {
       <Link to={"/"} prefetch="intent">
         /
       </Link>
+      <Link to={"/defer"}>Defer</Link>
     </main>
   );
 }
