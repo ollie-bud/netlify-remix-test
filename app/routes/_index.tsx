@@ -14,7 +14,7 @@ export const loader = async () => {
     ),
   ]);
 
-  return json({ ditto: await ditto, charmander: await charmander });
+  return json({ ditto: ditto, charmander: charmander });
 };
 
 export default function Index() {

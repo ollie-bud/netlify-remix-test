@@ -4,9 +4,10 @@ import { defer } from "react-router";
 
 export const loader = async () => {
   console.log("/defer loader");
-  const ditto = fetch("https://pokeapi.co/api/v2/pokemon/ditto").then(
-    async (data) => data.json()
+  const ditto = fetch("https://pokeapi.co/api/v2/pokemon/ditto").then((data) =>
+    data.json()
   );
+
   const charmander = fetch("https://pokeapi.co/api/v2/pokemon/charmander").then(
     (data) => data.json()
   );
