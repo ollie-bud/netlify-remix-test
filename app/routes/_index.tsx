@@ -26,7 +26,16 @@ export default function Index() {
   return (
     <main style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
       <h1>No Defer (with cache)</h1>
-      <Link to={"/defer"}>Defer</Link>
+      <ul>
+        <li>
+          <Link to={"/defer"}>Defer</Link>
+        </li>
+        <li>
+          <Link to={"/defer"} prefetch="intent">
+            Defer (Prefetch)
+          </Link>
+        </li>
+      </ul>
 
       <Suspense fallback={<p>Loading...</p>}>
         <Await resolve={ditto} errorElement={<p>Error loading</p>}>
