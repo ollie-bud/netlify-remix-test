@@ -1,6 +1,6 @@
 import { useLoaderData, Await, Link } from "@remix-run/react";
 import { Suspense } from "react";
-import { defer } from "@remix-run/node";
+import { defer } from "@remix-run/deno";
 
 export const loader = async () => {
   console.log("/defer loader");
