@@ -3,9 +3,9 @@ import { defer } from "@remix-run/node";
 import { Await, useLoaderData, Link } from "@remix-run/react";
 import { Suspense } from "react";
 
-// export const headers: HeadersFunction = ({ loaderHeaders }) => ({
-//   "Cache-Control": "public, max-age=60, s-maxage=60",
-// });
+export const headers: HeadersFunction = ({ loaderHeaders }) => ({
+  "Cache-Control": "public, max-age=60, s-maxage=60",
+});
 
 export const loader = async () => {
   const ditto = fetch("https://example-url.com/api/slow").then((data) =>
