@@ -13,23 +13,23 @@ import { RemixServer } from "@remix-run/react";
 
 import { renderToPipeableStream } from "react-dom/server";
 
-// import { setupServer } from "msw/node";
+import { setupServer } from "msw/node";
 
-// import { rest } from "msw";
-// import { DITTO } from "./ditto";
+import { rest } from "msw";
+import { DITTO } from "./ditto";
 
-// export const handlers = [
-//   rest.get("https://example-url.com/api/slow", (_, res, ctx) => {
-//     console.log("hit slow request");
-//     return res(ctx.status(200), ctx.delay(3000), ctx.json(DITTO));
-//   }),
-// ];
+export const handlers = [
+  rest.get("https://example-url.com/api/slow", (_, res, ctx) => {
+    console.log("hit slow request");
+    return res(ctx.status(200), ctx.delay(3000), ctx.json(DITTO));
+  }),
+];
 
-// export const server = setupServer(...handlers);
+export const server = setupServer(...handlers);
 
 const ABORT_DELAY = 5_000;
 
-// server.listen({ onUnhandledRequest: "warn" });
+server.listen({ onUnhandledRequest: "warn" });
 
 export default function handleRequest(
   request: Request,
