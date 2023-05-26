@@ -1,6 +1,6 @@
 import { useLoaderData, Await, Link } from "@remix-run/react";
 import { Suspense } from "react";
-import { json } from "react-router";
+import { json } from "@remix-run/node";
 
 export const loader = async () => {
   console.log("/ loader");
@@ -14,7 +14,14 @@ export const loader = async () => {
     ),
   ]);
 
-  return json({ ditto: ditto, charmander: charmander });
+  return json(
+    { ditto: ditto, charmander: charmander },
+    {
+      headers: {
+        "Cache-Control": "public, max-age=3600",
+      },
+    }
+  );
 };
 
 export default function Index() {
