@@ -21,8 +21,8 @@ export function headers({
 }
 
 export const loader = async () => {
-  const ditto = fetch("https://example-url.com/api/slow").then(async (data) =>
-    data.json()
+  const ditto = fetch("https://pokeapi.co/api/v2/pokemon/ditto").then(
+    async (data) => data.json()
   );
   const charmander = fetch("https://pokeapi.co/api/v2/pokemon/charmander").then(
     (data) => data.json()
