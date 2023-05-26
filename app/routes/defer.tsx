@@ -1,14 +1,27 @@
-import type { HeadersFunction } from "@remix-run/node";
 import { defer } from "@remix-run/node";
-import { Await, useLoaderData, Link } from "@remix-run/react";
+import { Await, useLoaderData } from "@remix-run/react";
+import { Link } from "@remix-run/react";
 import { Suspense } from "react";
 
-export const headers: HeadersFunction = ({ loaderHeaders }) => ({
-  "Cache-Control": "public, max-age=60, s-maxage=60",
-});
+export function headers({
+  loaderHeaders,
+  parentHeaders,
+}: {
+  loaderHeaders: Headers;
+  parentHeaders: Headers;
+}) {
+  console.log(
+    "This is an example of how to set caching headers for a route, feel free to change the value of 60 seconds or remove the header"
+  );
+  return {
+    // This is an example of how to set caching headers for a route
+    // For more info on headers in Remix, see: https://remix.run/docs/en/v1/route/headers
+    "Cache-Control": "public, max-age=60, s-maxage=60",
+  };
+}
 
 export const loader = async () => {
-  const ditto = fetch("https://example-url.com/api/slow").then((data) =>
+  const ditto = fetch("https://example-url.com/api/slow").then(async (data) =>
     data.json()
   );
   const charmander = fetch("https://pokeapi.co/api/v2/pokemon/charmander").then(
@@ -27,8 +40,7 @@ export default function Index() {
     <main style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
       <h1>Defer (with cache)</h1>
 
-      <Link to={"/1"}>Another page</Link>
-      <Link to={"/defer"}>Defer</Link>
+      <Link to={"/"}>/</Link>
 
       <Suspense fallback={<p>Loading...</p>}>
         <Await resolve={ditto} errorElement={<p>Error loading</p>}>
