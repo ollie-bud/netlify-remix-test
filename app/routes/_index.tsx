@@ -1,6 +1,6 @@
 import { useLoaderData, Await, Link } from "@remix-run/react";
 import { Suspense } from "react";
-import { json } from "@remix-run/deno";
+import { json } from "react-router";
 
 export const loader = async () => {
   console.log("/ loader");
