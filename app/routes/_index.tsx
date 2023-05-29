@@ -1,5 +1,5 @@
 import type { HeadersFunction } from "@remix-run/node";
-import { json } from "react-router";
+import { json } from "@remix-run/node";
 import { Await, useLoaderData, Link } from "@remix-run/react";
 import { Suspense } from "react";
 
