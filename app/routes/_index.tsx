@@ -1,14 +1,10 @@
-import type { HeadersFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
-import { Await, useLoaderData, Link } from "@remix-run/react";
+import { json } from "@remix-run/cloudflare";
+import { Await, Link, useLoaderData } from "@remix-run/react";
 import { Suspense } from "react";
 
-export const headers: HeadersFunction = ({ loaderHeaders }) => ({
-  "Cache-Control": "public, max-age=60, s-maxage=60",
-});
-
 export const loader = async () => {
-  const ditto = fetch("https://example-url.com/api/slow").then((data) =>
+  console.log("/");
+  const ditto = fetch("https://pokeapi.co/api/v2/pokemon/ditto").then((data) =>
     data.json()
   );
   const charmander = fetch("https://pokeapi.co/api/v2/pokemon/charmander").then(
@@ -27,18 +23,7 @@ export default function Index() {
 
   return (
     <main style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <h1>JSON (without cache)</h1>
-
-      <ul>
-        <li>
-          <Link to={"/defer"}>/defer</Link>
-        </li>
-        <li>
-          <Link to={"/defer"} prefetch="intent">
-            /defer (Prefetch)
-          </Link>
-        </li>
-      </ul>
+      <Link to="/defer">/defer</Link>
 
       <Suspense fallback={<p>Loading...</p>}>
         <Await resolve={ditto} errorElement={<p>Error loading</p>}>
@@ -67,6 +52,36 @@ export default function Index() {
           )}
         </Await>
       </Suspense>
+
+      <ul>
+        <li>
+          <a
+            target="_blank"
+            href="https://remix.run/tutorials/blog"
+            rel="noreferrer noopener"
+          >
+            15m Quickstart Blog Tutorial
+          </a>
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://remix.run/tutorials/jokes"
+            rel="noreferrer noopener"
+          >
+            Deep Dive Jokes App Tutorial
+          </a>
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://remix.run/docs"
+            rel="noreferrer noopener"
+          >
+            Remix Docs
+          </a>
+        </li>
+      </ul>
     </main>
   );
 }
