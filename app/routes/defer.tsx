@@ -1,6 +1,8 @@
 import { useLoaderData, Await, Link } from "@remix-run/react";
 import { Suspense } from "react";
-import { defer } from "@remix-run/node";
+import { defer } from "@vercel/remix";
+
+export const config = { runtime: "edge" };
 
 export const loader = async () => {
   console.log("/defer loader");
