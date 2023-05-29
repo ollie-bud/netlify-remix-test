@@ -1,6 +1,6 @@
 import { useLoaderData, Await, Link } from "@remix-run/react";
 import { Suspense } from "react";
-import { defer } from "react-router";
+import { defer } from "@remix-run/deno";
 
 export const loader = async () => {
   console.log("/defer loader");
@@ -11,6 +11,8 @@ export const loader = async () => {
   const charmander = fetch("https://pokeapi.co/api/v2/pokemon/charmander").then(
     (data) => data.json()
   );
+
+  console.log({ ditto, charmander });
   return defer({ ditto, charmander });
 };
 
