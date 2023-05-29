@@ -1,6 +1,6 @@
 import { useLoaderData, Await, Link } from "@remix-run/react";
 import { Suspense } from "react";
-import { defer } from "@remix-run/deno";
+import { defer } from "react-router";
 
 export const loader = async () => {
   console.log("/defer loader");
@@ -24,7 +24,7 @@ export default function Index() {
 
   return (
     <main style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <h1>Defer (with cache)</h1>
+      <h1>Defer stream (without cache)</h1>
 
       <ul>
         <li>

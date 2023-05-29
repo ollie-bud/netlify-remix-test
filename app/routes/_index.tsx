@@ -1,5 +1,5 @@
 import type { HeadersFunction } from "@remix-run/node";
-import { json } from "@remix-run/deno";
+import { json } from "react-router";
 import { Await, useLoaderData, Link } from "@remix-run/react";
 import { Suspense } from "react";
 
@@ -27,67 +27,46 @@ export default function Index() {
 
   return (
     <main style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <h1>Welcome to Remix</h1>
+      <h1>JSON (without cache)</h1>
+
       <ul>
         <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer noopener"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-
-        <Link to={"/1"}>Another page</Link>
-
-        <Suspense fallback={<p>Loading...</p>}>
-          <Await resolve={ditto} errorElement={<p>Error loading</p>}>
-            {(ditto) => (
-              <>
-                <h1>{ditto?.name}</h1>
-                <img
-                  src={ditto?.sprites?.front_default}
-                  style={{ imageRendering: "pixelated" }}
-                />
-              </>
-            )}
-          </Await>
-        </Suspense>
-
-        <Suspense fallback={<p>Loading...</p>}>
-          <Await resolve={charmander} errorElement={<p>Error loading</p>}>
-            {(charmander) => (
-              <>
-                <h1>{charmander?.name}</h1>
-                <img
-                  src={charmander?.sprites?.front_default}
-                  style={{ imageRendering: "pixelated" }}
-                />
-              </>
-            )}
-          </Await>
-        </Suspense>
-
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer noopener"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
+          <Link to={"/defer"}>/defer</Link>
         </li>
         <li>
-          <a
-            target="_blank"
-            href="https://remix.run/docs"
-            rel="noreferrer noopener"
-          >
-            Remix Docs
-          </a>
+          <Link to={"/defer"} prefetch="intent">
+            /defer (Prefetch)
+          </Link>
         </li>
       </ul>
+
+      <Suspense fallback={<p>Loading...</p>}>
+        <Await resolve={ditto} errorElement={<p>Error loading</p>}>
+          {(ditto) => (
+            <>
+              <h1>{ditto?.name}</h1>
+              <img
+                src={ditto?.sprites?.front_default}
+                style={{ imageRendering: "pixelated" }}
+              />
+            </>
+          )}
+        </Await>
+      </Suspense>
+
+      <Suspense fallback={<p>Loading...</p>}>
+        <Await resolve={charmander} errorElement={<p>Error loading</p>}>
+          {(charmander) => (
+            <>
+              <h1>{charmander?.name}</h1>
+              <img
+                src={charmander?.sprites?.front_default}
+                style={{ imageRendering: "pixelated" }}
+              />
+            </>
+          )}
+        </Await>
+      </Suspense>
     </main>
   );
 }
