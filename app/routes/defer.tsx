@@ -1,4 +1,4 @@
-import { defer } from "@remix-run/deno";
+import { defer } from "@remix-run/cloudflare";
 import { Await, Link, useLoaderData } from "@remix-run/react";
 import { Suspense } from "react";
 
