@@ -12,7 +12,7 @@ export const loader = async () => {
   );
 
   console.log({ ditto, charmander });
-  return defer({ ditto: await ditto, charmander: await charmander });
+  return defer({ ditto: ditto, charmander: charmander });
 };
 
 export default function Index() {
