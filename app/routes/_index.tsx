@@ -1,4 +1,4 @@
-import { json } from "@remix-run/node";
+import { json } from "@remix-run/deno";
 import { Await, Link, useLoaderData } from "@remix-run/react";
 import { Suspense } from "react";
 
